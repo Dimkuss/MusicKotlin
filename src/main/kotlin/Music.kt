@@ -1,13 +1,38 @@
-fun main(){
-    var buy = 5454
-    var summary = 100001
-    println("Вы купили на сумму $buy, вся сумма ваших прошлых покупок составляет $summary")
-    if (summary in 1001..10000){
-        var buy = buy - 100
-        println("Вы ранее купили на большую сумму, вам скидка 100 рублей, с вас в итоге $buy рублей")
+fun main() {
+
+    fun calc(currentItemSum: Int, allSum: Int, isMeloman: Boolean) {
+        if (isMeloman) {
+
+            when {
+                allSum <= 1000 -> {
+                    println("C вас как меломану ${currentItemSum - currentItemSum * 0.01}")
+
+                }
+                allSum in 1001..10000 -> {
+                    println("Вам предоставляется скидка 100 рублей. И как меломану. Bаша цена составит ${currentItemSum - 100 - currentItemSum * 0.01}")
+                }
+                allSum >= 10001 -> {
+                    println("Вам предоставляется скидка 5%. И как меломану. Ваша цена составит ${currentItemSum - currentItemSum * 0.05 - currentItemSum * 0.01}")
+                }
+
             }
-    else if (summary >10001) {
-        var buy = buy - buy *0.05
-        println("Вы ранее купили на ОГРОМНУЮ сумму, вам скидка 5% с вас $buy рублей")
+
+
+        } else {
+            when {
+                allSum <= 1000 -> {
+                    println("C вас  $currentItemSum")
+
+                }
+                allSum in 1001..10000 -> {
+                    println("Вам предоставляется скидка 100 рублей. Bаша цена составит ${currentItemSum - 100}")
+                }
+                allSum >= 10001 -> {
+                    println("Вам предоставляется скидка 5%. Ваша цена составит ${currentItemSum - currentItemSum * 0.05}")
+                }
+
+            }
+        }
     }
+    calc(1000, 1001, false)
 }
